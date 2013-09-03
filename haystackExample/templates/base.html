@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+    
+{% load url from future %}
+
+<html lang=en>
+<head>
+    <title>Haystack Example</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+        
+</head>
+
+<body>
+    <div class="container">
+    <h1>{% block title %} Here's a title. {% endblock %}</h1>
+    <p>And here's some text.</p>
+    
+    <p>{{ message }}</p>
+    <p>Today is {% now "l" %}</p>
+    
+    {% block content %}{% endblock %}
+    
+    </div>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    
+</body>
+</html>
