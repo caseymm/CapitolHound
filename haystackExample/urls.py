@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'haystackExample.views.home', name='home'),
     # url(r'^haystackExample/', include('haystackExample.foo.urls')),
-    url(r'^$', views.notes, name='hay_home'),
+    url(r'^$', views.notes, name='notes'),
     url(r'^search/', include('haystack.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
