@@ -1,0 +1,15 @@
+[
+    '{{repeat(100)}}',
+    {
+        pk: '{{index}}',
+        model: 'searchExample.Note',
+        fields: 
+            {
+                title: '{{company}}',
+            	body: 'The quick brown fox jumped over the lazy dog. {{lorem(7, sentences)}} health of the nation. Care for the world.',
+                timestamp: '2012-04-23T18:25:43.511Z'
+            }
+        
+    }
+        
+]
