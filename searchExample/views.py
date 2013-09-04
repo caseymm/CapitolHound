@@ -8,7 +8,7 @@
 
 from django.shortcuts import render_to_response
 
-from searchExample.forms import NotesSearchForm
+from .forms import NotesSearchForm
 
 
 def notes(request):
