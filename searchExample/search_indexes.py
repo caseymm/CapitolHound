@@ -1,8 +1,10 @@
+#don't think that this is currently doing anything
+
 from haystack import indexes
 
 from django.utils import timezone
 
-from .models import Note
+from searchExample.models import Note
 
 
 class NoteIndex(indexes.SearchIndex, indexes.Indexable):

@@ -20,7 +20,7 @@ DATABASES = {
         'NAME': 'casey',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'casey',
-        'PASSWORD': 'capitalHound',
+        'PASSWORD': 'capitolHound',
         'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -169,8 +169,9 @@ LOGGING = {
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9201/',
+        'URL': 'http://127.0.0.1:9200/',
         'INDEX_NAME': 'haystack',
+        'TIMEOUT': 60,
     },
 }
 

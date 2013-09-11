@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-1 col-sm-1 blue">
+        {{ note.title }}
+    </div>
+    
+    <div class="col-md-11 col-sm-11">
+        {{ note.body }}
+        <div class="blue">
+        {{ note.timestamp }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-9 col-sm-9"></div>
+    <div class="col-md-3 col-sm-3">
+        
+        <a href="/"><button type="button" class="btn btn-primary btn-block">
+            Return
+        </button></a>
+    </div>
+</div>
+
+
+
+{% endblock %}
