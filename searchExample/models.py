@@ -11,3 +11,11 @@ class Note(models.Model):
         return self.title
         return self.body
         return self.timestamp
+
+class NoteSegment(models.Model):
+    note = models.ForeignKey(Note)
+    segmentContent = models.TextField()
+
+    def __unicode__(self):
+        #return self.note 
+        return self.segmentContent 

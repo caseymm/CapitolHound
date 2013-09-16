@@ -14,6 +14,9 @@ urlpatterns = patterns('',
     #url(r'^search/', include('haystack.urls')),
     url(r'^', include('haystack.urls')),
     url(r'^(?P<pk>\d+)$', views.note, name='note'),
+    
+    #this has to be commented out for the admin to work
+    #I think it has something to do with running the query on the home page
     url(r'^', views.notes, name='notes'),
 
 

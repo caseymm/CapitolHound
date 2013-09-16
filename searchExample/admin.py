@@ -1,4 +1,14 @@
 from django.contrib import admin
-from searchExample.models import Note
+from searchExample.models import Note, NoteSegment
 
-admin.site.register(Note)
+#admin.site.register(Note)
+
+class NoteAdmin(admin.ModelAdmin):
+    search_fields = ('body',)
+
+admin.site.register(Note, NoteAdmin)
+
+class NoteSegmentAdmin(admin.ModelAdmin):
+    search_fields = ('segmentContent',),
+    
+admin.site.register(NoteSegment, NoteSegmentAdmin)
