@@ -24,7 +24,7 @@ def notes(request):
 
 def note(request, pk):
     #this isn't right
-    note = get_object_or_404(Note, id=pk)
+    note = get_object_or_404(Note)
     notesegment = get_object_or_404(NoteSegment, id=pk)
     
     context = {
