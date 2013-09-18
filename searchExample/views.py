@@ -24,14 +24,18 @@ def notes(request):
 
 def note(request, pk):
     #this isn't right
-    note = get_object_or_404(Note)
+    note = get_object_or_404(Note, id=pk)
     notesegment = get_object_or_404(NoteSegment, id=pk)
+    all_segments = list(note.notesegment_set.all())
+    #all_segments = NoteSegment.objects.all()
     
     context = {
         'note': note,
         'notesegment': notesegment,
+        'all_segments': all_segments,
     }
     return render(request, "searchExample/note.html", context)
+
 
 #def notesegment(request, pk):
 #    notesegment= get_object_or_404(NoteSegment)

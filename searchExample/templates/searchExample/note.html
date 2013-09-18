@@ -3,6 +3,7 @@
 
 {% block content %}
 
+
 <div class="row">
     <div class="col-md-1 col-sm-1 blue">
         {{ note.header }}
@@ -10,17 +11,24 @@
     </div>
     
     <div class="col-md-11 col-sm-11">
+        {% for notesegment in all_segments %}
+            
         {{ notesegment.title }}
         <br />
         {{ notesegment.body }}
         <div class="blue">
         {{ notesegment.timestamp }}
         </div>
+        <br />
+        {% endfor %}
+        
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-9 col-sm-9"></div>
+    <div class="col-md-9 col-sm-9">
+
+    </div>
     <div class="col-md-3 col-sm-3">
         
         <a href="/"><button type="button" class="btn btn-primary btn-block">
