@@ -23,12 +23,9 @@
                 <p>
                     {% highlight result.object with query html_tag "span" class "highlighted" %}
                     <a href="{{ result.object.note.id }}#{{ result.object.id }}">{{result.object.title}}</a>
-                    
 
                 </p>
-            
 
-            
             {% empty %}
                 <p>No results found.</p>
             {% endfor %}

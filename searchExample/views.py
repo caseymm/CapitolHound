@@ -2,15 +2,8 @@
 from searchExample.models import Note, NoteSegment
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 
-#from django.shortcuts import render
-
-#def home(request):
-    #context = {'message': 'Here\'s the message from the views file'}
-    #return render(request, "base.html", context)
-
-from django.shortcuts import render_to_response
-
 from searchExample.forms import NotesSearchForm
+from searchExample.query import NotesQuery
 
 
 def notes(request):
@@ -36,11 +29,3 @@ def note(request, pk):
     }
     return render(request, "searchExample/note.html", context)
 
-
-#def notesegment(request, pk):
-#    notesegment= get_object_or_404(NoteSegment)
-#    
-#    context = {
-#       'notesegment': notesegment,
-#    }
-#    return render(request, "searchExample/note.html", context)
