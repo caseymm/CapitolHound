@@ -3,7 +3,16 @@
     font-size: 16px;
 }
 
+.small{
+    font-size: 12px;
+}
+
 .spacer{
     width: 100%;
     height: 800px;
+}
+
+.highlighted{
+    color: #373;
+    background-color: yellow !important;
 }

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% load highlight %}
 {% load url from future %}
+
 
 {% block content %}
 
@@ -9,19 +11,24 @@
         {{ note.title }}
         
     </div>
-    
+
     <div class="col-md-9 col-sm-9">
         {% for notesegment in all_segments %}
-            
         <a name="{{ notesegment.id }}"></a>
         {{ notesegment.title }}
+    
         <br />
+
+       
         {{ notesegment.body }}
-        <div class="blue">
-        {{ notesegment.timestamp }}
+        <div class="blue small">
+            {{ notesegment.timestamp }}
         </div>
+
         <br />
-    {% endfor %}
+    
+
+{% endfor %}
         
     </div>
 </div>
