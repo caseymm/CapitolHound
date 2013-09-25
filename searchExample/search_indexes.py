@@ -5,6 +5,7 @@ from django.utils import timezone
 from searchExample.models import Note, NoteSegment
 
 
+
 class NoteIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     title = indexes.CharField(model_attr='title')

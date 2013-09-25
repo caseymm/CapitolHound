@@ -3,8 +3,7 @@
 {% load url from future %}
 
 
-{% block content %}
-
+{% block notes %}
 
 <div class="row">
     <div class="col-md-3 col-sm-3 blue">
@@ -14,12 +13,13 @@
 
     <div class="col-md-9 col-sm-9">
         {% for notesegment in all_segments %}
+                
+     
         <a name="{{ notesegment.id }}"></a>
         {{ notesegment.title }}
     
         <br />
 
-       
         {{ notesegment.body }}
         <div class="blue small">
             {{ notesegment.timestamp }}
@@ -27,7 +27,6 @@
 
         <br />
     
-
 {% endfor %}
         
     </div>

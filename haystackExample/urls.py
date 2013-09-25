@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     
     #this has to be commented out for the admin to work
     #I think it has something to do with running the query on the home page
-    url(r'^', views.notes, name='notes'),
+    #url(r'^', views.notes, name='notes'),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:
