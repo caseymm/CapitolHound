@@ -8,8 +8,12 @@
             
                 
                 <p>
-                    {% highlight result.object with query html_tag "span" class "highlighted" %}<br />
+                   
                     <a href="{{ result.object.note.id }}#{{ result.object.id }}">{{result.object.title}}</a>
+                    <br />
+                    {% highlight result.object.body with query html_tag "span" class "highlighted" %}
+                    <br />
+                    {{result.object.timestamp}}
                     
                 </p>
 
