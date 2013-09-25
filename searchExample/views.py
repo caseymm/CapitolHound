@@ -13,20 +13,20 @@ def notes(request):
     all_notes = Note.objects.all()
     context = {
         'notes': notes,
-        'allnotes': allnotes,
+        'all_notes': all_notes,
     }
     #return render_to_response('notes.html', {'notes': notes})
-    return render(request, 'home', context)
+    return render(request, 'searchExample/notes.html', context)
 
 def note(request, pk):
-    #this isn't right
+    #form = NotesSearchForm(request.GET)
+    #notes = form.search()
     note = get_object_or_404(Note, id=pk)
-    #all_notes = Note.objects.all()
     notesegment = get_object_or_404(NoteSegment, id=pk)
     all_segments = list(note.notesegment_set.all())
-    #all_segments = NoteSegment.objects.all()
-    
+   
     context = {
+        'notes': notes,
         'note': note,
         'notesegment': notesegment,
         'all_segments': all_segments,

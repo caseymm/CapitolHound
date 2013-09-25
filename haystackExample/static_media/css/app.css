@@ -3,6 +3,10 @@
     font-size: 16px;
 }
 
+.blueBG{
+    background-color: #56A0D3 !important;
+}
+
 .small{
     font-size: 12px;
 }
@@ -10,8 +14,4 @@
 .spacer{
     width: 100%;
     height: 800px;
-}
-
-.highlighted{
-    background-color: yellow !important;
 }

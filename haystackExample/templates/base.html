@@ -47,12 +47,13 @@
                 </div>
             {% endif %}
         {% endif %}
-        </form>
+    
+    {% block all_notes %}
+    {% endblock %}    
     
     {% block notes %}
-    
     {% endblock %}
-    
+    </form>
     
     <!--{% for note in notes %}
         {{ note.title }}

@@ -2,21 +2,15 @@
 {% load highlight %}
 
 {% block content %}
-    
-            
 
-            
-                
                 <p>
                    
                     <a href="{{ result.object.note.id }}#{{ result.object.id }}">{{result.object.title}}</a>
                     <br />
-                    {% highlight result.object.body with query html_tag "span" class "highlighted" %}
+                    {% highlight result.object.body with query html_tag "span" css_class "label label-info blueBG" %}
                     <br />
                     {{result.object.timestamp}}
                     
                 </p>
-
-            
-        
+ 
 {% endblock %}
