@@ -5,21 +5,22 @@
 
 {% block notes %}
 
+
+
 <div class="row">
     <div class="col-md-3 col-sm-3 blue">
         {{ note.title }}
-        
     </div>
 
     <div class="col-md-9 col-sm-9">
         {% for notesegment in all_segments %}
                 
-     
+
         <a name="{{ notesegment.id }}"></a>
         <b>{{ notesegment.title }}</b>
     
         <br />
-
+        
         {{ notesegment.body }}
         <div class="blue small">
             {{ notesegment.timestamp }}
@@ -27,7 +28,7 @@
 
         <br />
         
-    
+   
 {% endfor %}
         
     </div>

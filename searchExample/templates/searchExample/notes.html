@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
-{% load url from future %}
 
-{% block all_notes %}
-    <p>dkdlsdnkfkj</p>
+{% block content %}
+<form type="get" action=".">
+    <input type="text" name="q">
+    <button type="submit">Search</button>
+</form>
 
-
+{% for note in notes %}
+<h1>{{ note.title }}</h1>
+<p>
+    {{ note.body }}
+</p>
+{% endfor %}
 {% endblock %}

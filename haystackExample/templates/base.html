@@ -19,14 +19,26 @@
 
     <form method="get" action=".">
         <table>
-            {{ form.as_table }}
             <tr>
-                <td>&nbsp;</td>
+                <th>
+                    <label for="id_q">Search:</label>
+                </th>
+                <td>
+                    <input id="id_q" name="q" type="text" value="" />
+                </td>
+
+<!--<tr><th><label for="id_models_0">Search In:</label></th><td><ul>
+<li><label for="id_models_0"><input id="id_models_0" name="models" type="checkbox" value="searchExample.notesegment" /> Note segments</label></li>
+<li><label for="id_models_1"><input id="id_models_1" name="models" type="checkbox" value="searchExample.note" /> Notes</label></li>
+</ul></td></tr>-->
+
                 <td>
                     <input type="submit" value="Search" class="btn btn-primary">
                 </td>
             </tr>
         </table>
+    </form>    
+        <br />
 
         {% if query %}
         <h3>Results</h3>
@@ -51,9 +63,10 @@
     {% block all_notes %}
     {% endblock %}    
     
+
     {% block notes %}
     {% endblock %}
-    </form>
+
     
     <!--{% for note in notes %}
         {{ note.title }}

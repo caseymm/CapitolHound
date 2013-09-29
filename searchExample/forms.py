@@ -1,23 +1,8 @@
-from haystack.forms import SearchForm
-#from haystack.query import SearchQuerySet
+### DOESN'T DO ANYTHING
 
-class NotesSearchForm(SearchForm):
+#from haystack.forms import SearchForm
 
-    def no_query_found(self):
-        query = self.searchqueryset.all()
-        return query 
+#class NotesSearchForm(SearchForm):
 
-#from haystack.forms import HighlightedModelSearchForm
-#from django import forms
-#from searchExample.models import Note, NoteSegment
-
-#class NotesSearchForm(HighlightedModelSearchForm):
-    #project = forms.ModelChoiceField(queryset=NoteSegment.objects.all(), required=False)
-
-    #def search(self):
-        #lQuerySet = super(NotesSearchForm, self).search()
-
-        #if self.cleaned_data['project']:
-            #lQuerySet = lQuerySet.filter(project=self.cleaned_data['project'])
-
-        #return lQuerySet
+#    def no_query_found(self):
+#        return self.searchqueryset.all() 
