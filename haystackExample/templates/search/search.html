@@ -5,7 +5,7 @@
 
                 <p>
                    
-                    <a href="{{ result.object.note.id }}#{{ result.object.id }}">{{result.object.title}}</a>
+                    <a href="{{ result.object.note.id }}?={{ query }}#{{ result.object.id }}">{{result.object.title}}</a>
                     <br />
                     {% highlight result.object.body with query html_tag "span" css_class "label label-info blueBG" %}
                     <br />
