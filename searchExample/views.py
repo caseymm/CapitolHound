@@ -13,10 +13,10 @@ from urllib import urlparse
 def notes(request):
     form = NotesSearchForm(request.GET)
     notes = form.search()
-    #all_notes = Note.objects.all()
+    all_notes = Note.objects.all()
     context = {
         'notes': notes,
-        #'allnotes': allnotes,
+        'all_notes': all_notes,
     }
     #return render_to_response('notes.html', {'notes': notes})
     return render(request, "searchExample/notes.html", context)

@@ -1,15 +1,32 @@
 {% extends 'base.html' %}
+{% load highlight %}
 
-{% block content %}
-<form type="get" action=".">
-    <input type="text" name="q">
-    <button type="submit">Search</button>
-</form>
+{% block all_notes %}
+    <form method="get" action="search/">
+        <table>
+            <tr>
+                <th>
+                    <label for="id_q">Search:</label>
+                </th>
+                <td>
+                    <input id="id_q" name="q" type="text" value="" />
+                </td>
+                <td>
+                    <input type="submit" value="Search" class="btn btn-primary">
+                </td>
+            </tr>
+        </table>
+    </form>    
+        <br />
+        
+<p>This is the homepage.</p>
 
-{% for note in notes %}
-<h1>{{ note.title }}</h1>
-<p>
-    {{ note.body }}
-</p>
+
+<p class = "small">This currently lists all notes.</p>
+{% for note in all_notes %}
+<h4>{{ note.title }}</h4>
+    <p class = "blue small">{{ note.timestamp }}</p>
+
 {% endfor %}
+
 {% endblock %}
