@@ -1,5 +1,5 @@
 from django.contrib import admin
-from searchExample.models import Note, NoteSegment
+from searchExample.models import Note, NoteSegment, UserProfile
 
 #admin.site.register(Note)
 
@@ -12,3 +12,5 @@ class NoteSegmentAdmin(admin.ModelAdmin):
     search_fields = ('body',),
     
 admin.site.register(NoteSegment, NoteSegmentAdmin)
+
+admin.site.register(UserProfile)

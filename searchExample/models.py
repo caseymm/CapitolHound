@@ -1,5 +1,5 @@
 from django.db import models
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 
 class Note(models.Model):
@@ -23,4 +23,15 @@ class NoteSegment(models.Model):
     def __unicode__(self):
         return self.title
         return self.body
-        return self.timestamp 
+        return self.timestamp
+    
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+    # The additional attributes we wish to include.
+    topics = models.CharField(max_length=1000)
+
+    # Override the __unicode__() method to return out something meaningful!
+    def __unicode__(self):
+        return self.user.username

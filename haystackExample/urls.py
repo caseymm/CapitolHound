@@ -15,14 +15,13 @@ urlpatterns = patterns('',
     # url(r'^$', 'haystackExample.views.home', name='home'),
     # url(r'^haystackExample/', include('haystackExample.foo.urls')),
     url(r'^$', views.notes, name='notes'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^search/$', include('haystack.urls')),
     #url(r'^$', include('haystack.urls')),
     #url(r'^', include('searchExample.urls')),
     url(r'^search/(?P<pk>\d+)$', views.note, name='note'),
-    
-    #this has to be commented out for the admin to work
-    #I think it has something to do with running the query on the home page
-    #url(r'^', views.notes, name='notes'),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:
