@@ -1,16 +1,13 @@
-# Django settings for haystackExample project.
-
 import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
 PROJECT_PATH = os.path.dirname(PROJECT_ROOT)
 
-DEV = True
-DEBUG = DEV
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Casey Miller', 'caseymm@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -18,10 +15,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'casey',                      # Or path to database file if using sqlite3.
+        'NAME': 'transcripts',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'casey',
-        'PASSWORD': 'capitolHound',
+        'USER': 'uncviscom_caseymm',
+        'PASSWORD': 'cmm1993',
         'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -67,11 +64,11 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'static_media')
+STATIC_ROOT = '/home/uncviscom/webapps/static_media/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://uncviscom.webfactional.com/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -143,10 +140,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'searchExample',
-    
+
     # Added.
     'haystack',
-    'courier',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -181,21 +177,19 @@ LOGGING = {
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',
+        'URL': 'http://108.59.10.218:9200',
         'INDEX_NAME': 'haystack',
         'TIMEOUT': 60,
     },
 }
 
+#HAYSTACK_SITECONF='haystackExample.search_sites'
+#HAYSTACK_SEARCH_ENGINE='default'
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+#HAYSTACK_CUSTOM_HIGHLIGHTER = 'searchExample.utils.BorkHighlighter'
 
-
-if DEV:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    COURIER_FAIL_SILENTLY = False
-else:
-    EMAIL_HOST = 'smtp.example.com'
-    EMAIL_PORT = 45
-    EMAIL_HOST_USER = 'no-reply@example.com'
-    EMAIL_HOST_PASSWORD = 'mypassword'
-    EMAIL_USE_TLS = False
+EMAIL_HOST = 'stmp.webfaction.com'
+EMAIL_HOST_USER = 'mailbox_username'
+EMAIL_HOST_PASSWORD = 'mailbox_password'
+DEFAULT_FROM_EMAIL = 'valid_email_address'
+SERVER_EMAIL = 'valid_email_address'

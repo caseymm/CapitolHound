@@ -5,8 +5,7 @@ import os
 PROJECT_ROOT = os.path.dirname(__file__)
 PROJECT_PATH = os.path.dirname(PROJECT_ROOT)
 
-DEV = True
-DEBUG = DEV
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -146,7 +145,6 @@ INSTALLED_APPS = (
     
     # Added.
     'haystack',
-    'courier',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -188,14 +186,4 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-
-
-if DEV:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    COURIER_FAIL_SILENTLY = False
-else:
-    EMAIL_HOST = 'smtp.example.com'
-    EMAIL_PORT = 45
-    EMAIL_HOST_USER = 'no-reply@example.com'
-    EMAIL_HOST_PASSWORD = 'mypassword'
-    EMAIL_USE_TLS = False
+#HAYSTACK_CUSTOM_HIGHLIGHTER = 'searchExample.utils.BorkHighlighter'
