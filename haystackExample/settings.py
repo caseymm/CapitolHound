@@ -1,9 +1,5 @@
 # Django settings for haystackExample project.
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-
-
 import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
@@ -29,8 +25,6 @@ DATABASES = {
     'PASSWORD': 'qALH9Kzizjc1gGiRl_StnR8_R5'
   }
 }
-
-DATABASES['default'] =  dj_database_url.config()
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -205,7 +199,9 @@ else:
     EMAIL_HOST_PASSWORD = 'mypassword'
     EMAIL_USE_TLS = False
     
-
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
