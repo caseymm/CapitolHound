@@ -13,12 +13,6 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-from django.db import transaction, IntegrityError
-try:
-    a.save()
-except IntegrityError:
-    transaction.rollback()
-
 MANAGERS = ADMINS
 
 DATABASES = {
