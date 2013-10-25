@@ -1,6 +1,7 @@
 # Django settings for haystackExample project.
 
 import os
+import dj_database_url
 
 PROJECT_ROOT = os.path.dirname(__file__)
 PROJECT_PATH = os.path.dirname(PROJECT_ROOT)
