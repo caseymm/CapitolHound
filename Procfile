@@ -1,1 +1,1 @@
-web: gunicorn haystackExample.wsgi -b 0.0.0.0:$PORT
+web: gunicorn haystackExample.wsgi
