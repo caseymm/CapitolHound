@@ -16,14 +16,8 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'd3bf49sd9gfda',
-    'HOST': 'ec2-54-235-74-57.compute-1.amazonaws.com',
-    'PORT': 5432,
-    'USER': 'pfagnfmmkgkfrh',
-    'PASSWORD': 'pIgK63qSASwNFxW4Bp-b6WL77h'
-  }
+  'default': dj_database_url.config()
+  
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -200,8 +194,8 @@ else:
     EMAIL_USE_TLS = False
     
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
