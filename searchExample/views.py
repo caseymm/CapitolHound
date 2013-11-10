@@ -11,6 +11,8 @@ from searchExample.forms import NotesSearchForm, UserForm, UserProfileForm
 #from searchExample.utils import BorkHighlighter
 import urllib
 from urllib import urlparse
+from django.core.mail import EmailMultiAlternatives
+#from django.core.mail import send_mail
 
 
 def notes(request):
@@ -136,6 +138,22 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
+                
+                #send_mail('Abandon Ship', 'Hope you found a lifeboat...', 'admin@capitolhound.com',
+                #[user.email])
+                
+                msg = EmailMultiAlternatives(
+                subject="Capitol Hound Alert",
+                body="This is the text email body",
+                from_email="Sender <admin@capitolhound.com>",
+                to=[user.email],
+                headers={'Reply-To': "Service <support@example.com>"} # optional extra headers
+                )
+                msg.attach_alternative("<p>This is the HTML email body</p>", "text/html")
+                
+                # Send it:
+                msg.send()
+                
                 return HttpResponseRedirect('/')
             else:
                 # An inactive account was used - no logging in!
@@ -163,3 +181,47 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
+
+### EMAIL ###
+@login_required
+def email_test(request):
+# Check form values, etc., and subscribe the user.
+# Like before, obtain the context for the user's request.
+    context = RequestContext(request)
+
+    # If the request is a HTTP POST, try to pull out the relevant information.
+    if request.method == 'POST':
+        # Gather the username and password provided by the user.
+        # This information is obtained from the login form.
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Use Django's machinery to attempt to see if the username/password
+        # combination is valid - a User object is returned if it is.
+        user = authenticate(username=username, password=password)
+
+        # If we have a User object, the details are correct.
+        # If None (Python's way of representing the absence of a value), no user
+        # with matching credentials was found.
+        if user is not None:
+            # Is the account active? It could have been disabled.
+            if user.is_active:
+                # If the account is valid and active, we can send him/her an email
+                send_mail('Abandon Ship', 'Hope you found a lifeboat...', 'admin@capitolhound.com',
+                [user.email])
+                return HttpResponseRedirect('searchExample/email_success.html')
+            else:
+                # An inactive account was used - no logging in!
+                return HttpResponse("Your account is disabled.")
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("Invalid login details supplied.")
+
+    # The request is not a HTTP POST, so display the login form.
+    # This scenario would most likely be a HTTP GET.
+    else:
+        # No context variables to pass to the template system, hence the
+        # blank dictionary object...
+        return render_to_response('searchExample/login.html', {}, context)
+        

@@ -25,6 +25,12 @@ class NoteSegment(models.Model):
         return self.body
         return self.timestamp
     
+#class User(models.Model):
+    # The additional attributes we wish to include.
+    #username = models.CharField(max_length=1000)
+    #email = models.CharField(max_length=1000)
+    #password = models.CharField(max_length=1000)
+
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
@@ -35,3 +41,5 @@ class UserProfile(models.Model):
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
         return self.user.username
+    
+#class email = EmailMessage('Hello', 'Body goes here', 'from@example.com', [user.email], headers = {'Reply-To': 'another@example.com'})
