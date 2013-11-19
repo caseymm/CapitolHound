@@ -1,18 +1,18 @@
 # Create your views here.
 
-from searchExample.models import Note, NoteSegment
+from searchExample.models import Note, NoteSegment, UserProfile
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from searchExample.forms import NotesSearchForm, UserForm, UserProfileForm
+
 #from searchExample.query import NotesQuery
-#from searchExample.utils import BorkHighlighter
 import urllib
 from urllib import urlparse
 from django.core.mail import EmailMultiAlternatives
-#from django.core.mail import send_mail
+from django.core.mail import send_mail
 
 
 def notes(request):
@@ -39,8 +39,7 @@ def note(request, pk):
     pageURL = request.get_full_path()
     urlData = urlparse(pageURL)
     theQuery = urlData.query.strip('=')
-    
-    
+
     context = {
         'tempvar': theQuery,
         'note': note,
@@ -144,14 +143,14 @@ def user_login(request):
                 
                 msg = EmailMultiAlternatives(
                 subject="Capitol Hound Alert",
-                body="This is the text email body",
-                from_email="Sender <admin@capitolhound.com>",
-                to=[user.email],
-                headers={'Reply-To': "Service <support@example.com>"} # optional extra headers
+                body="This is a test email for the Capitol Hound alert system",
+                from_email="Capitol Hound Support <support@capitolhound.com>",
+                to=[user.email]
+                #headers={'Reply-To': "Service <support@example.com>"} # optional extra headers
                 )
-                msg.attach_alternative("<p>This is the HTML email body</p>", "text/html")
+                msg.attach_alternative("<p>This is a test email for the <b>Capitol Hound</b> alert system.</p>", "text/html")
                 
-                # Send it:
+                #Send it:
                 msg.send()
                 
                 return HttpResponseRedirect('/')
@@ -182,46 +181,98 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
 
-### EMAIL ###
 @login_required
-def email_test(request):
-# Check form values, etc., and subscribe the user.
-# Like before, obtain the context for the user's request.
+def edit_profile(request):
+    # Like before, get the request's context.
     context = RequestContext(request)
 
-    # If the request is a HTTP POST, try to pull out the relevant information.
+    # A boolean value for telling the template whether the registration was successful.
+    #registered = True
+
+    # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
-        # Gather the username and password provided by the user.
-        # This information is obtained from the login form.
-        username = request.POST['username']
-        password = request.POST['password']
+        # Attempt to grab information from the raw form information.
+        # Note that we make use of both UserForm and UserProfileForm.
+        #user_form = UserForm(data=request.POST)
+        #profile_form = UserProfileForm(data=request.POST)
 
-        # Use Django's machinery to attempt to see if the username/password
-        # combination is valid - a User object is returned if it is.
-        user = authenticate(username=username, password=password)
+        # If the two forms are valid...
+        if user_form.is_valid() and profile_form.is_valid():
+            # Save the user's form data to the database.
+            user = user_form.save()
 
-        # If we have a User object, the details are correct.
-        # If None (Python's way of representing the absence of a value), no user
-        # with matching credentials was found.
-        if user is not None:
-            # Is the account active? It could have been disabled.
-            if user.is_active:
-                # If the account is valid and active, we can send him/her an email
-                send_mail('Abandon Ship', 'Hope you found a lifeboat...', 'admin@capitolhound.com',
-                [user.email])
-                return HttpResponseRedirect('searchExample/email_success.html')
-            else:
-                # An inactive account was used - no logging in!
-                return HttpResponse("Your account is disabled.")
+            # Now we hash the password with the set_password method.
+            # Once hashed, we can update the user object.
+            user.set_password(user.password)
+            user.save()
+
+            # Now sort out the UserProfile instance.
+            # Since we need to set the user attribute ourselves, we set commit=False.
+            # This delays saving the model until we're ready to avoid integrity problems.
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            # Now we save the UserProfile model instance.
+            profile.save()
+
+            # Update our variable to tell the template registration was successful.
+            #registered = True
+
+        # Invalid form or forms - mistakes or something else?
+        # Print problems to the terminal.
+        # They'll also be shown to the user.
         else:
-            # Bad login details were provided. So we can't log the user in.
-            print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("Invalid login details supplied.")
+            print user_form.errors, profile_form.errors
+
+    # Not a HTTP POST, so we render our form using two ModelForm instances.
+    # These forms will be blank, ready for user input.
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+
+    # Render the template depending on the context.
+    return render_to_response(
+            'searchExample/register.html',
+            {'user_form': user_form, 'profile_form': profile_form},
+            context)
+
+@login_required
+def topics(request):
+    context = RequestContext(request)
+    
+    pageURL = request.get_full_path()
+    urlData = urlparse(pageURL)
+    theQuery = urlData.query.strip('=')
+    
+    if request.method == 'POST':
+        
+        #Can't get 'user' - don't know how to define, thought @login_required would take care of this.
+        profile = UserProfile.objects.get(user)
+        
+        # Would like to save the query string that we're getting on the page to the UserProfile - don't think CharField
+        # in models is correct, though
+        profile.topics = theQuery
+        profile.save() 
 
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render_to_response('searchExample/login.html', {}, context)
-        
+        return render_to_response('searchExample/note.html', {}, context)
+
+### EMAIL ###
+#NOT DOING ANYTHING RIGHT NOW
+@login_required
+def email_test(request):
+    msg = EmailMultiAlternatives(
+    subject="Capitol Hound Alert",
+    body="This is a test email for the Capitol Hound alert system",
+    from_email="Capitol Hound Support <support@capitolhound.com>",
+    to=[user.email]
+    #headers={'Reply-To': "Service <support@example.com>"} # optional extra headers
+    )
+    msg.attach_alternative("<p>This is a test email for the <b>Capitol Hound</b> alert system.</p>", "text/html")
+                
+    #Send it:
+    msg.send()

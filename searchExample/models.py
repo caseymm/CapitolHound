@@ -36,10 +36,10 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
 
     # The additional attributes we wish to include.
+    # this is where I want the query strings to be saved
     topics = models.CharField(max_length=1000)
 
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
         return self.user.username
     
-#class email = EmailMessage('Hello', 'Body goes here', 'from@example.com', [user.email], headers = {'Reply-To': 'another@example.com'})

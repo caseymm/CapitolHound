@@ -199,8 +199,11 @@ BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 #EMAIL_BACKEND = 'django_sendmail_backend.backends.EmailBackend'
-MANDRILL_API_KEY = 'FsE3h6f01EfqOueRFpWQKAl'
-EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+#MANDRILL_API_KEY = 'FsE3h6f01EfqOueRFpWQKAl'
+#EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 
-SERVER_EMAIL = 'admin@capitolhound.com'
+#SERVER_EMAIL = 'casey.miller@capitolhound.com'
+
+import mandrill
+mandrill_client = mandrill.Mandrill('FsE3h6f01EfqOueRFpWQKAl')
 

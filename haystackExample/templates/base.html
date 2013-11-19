@@ -24,7 +24,8 @@
                 <h4>Hello, {{ user.username }}!</h4>
                 <a class="btn btn-danger btn-xs" href="{% url 'logout' %}">Logout</a>
                 <a class="btn btn-primary btn-xs" href="{% url 'login' %}">Sign in as a different user</a>
-                <a class="btn btn-primary btn-lg" href="{% url 'email_test' %}">Send yourself an email</a>
+                <!--<a class="btn btn-success btn-xs" href="{% url 'edit_profile' %}">Edit Profile</a>
+                <a class="btn btn-primary btn-md" href="{% url 'email_test' %}">Send yourself an email</a>-->
                 {% else %}
                 <h4>Please login or register.</h4>
                 <a class="btn btn-primary btn-xs" href="{% url 'register' %}">Register Here</a>

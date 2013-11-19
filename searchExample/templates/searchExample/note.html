@@ -22,6 +22,14 @@
         </table>
     </form>    
         <br />
+        
+        
+        <!-- This is the form that I'd like to use to save the query string to the UserProfile data -->
+        <form method="post" action="{% url 'topics' %}"
+                enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="submit" name="submit" value="Save" />
+        </form>
 
 <h2>{{ tempvar }}</h2>
 
