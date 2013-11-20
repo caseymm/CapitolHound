@@ -6,6 +6,8 @@
 
 
 {% block notes %}
+
+    
     <form method="get" action=".">
         <table>
             <tr>
@@ -24,13 +26,39 @@
         <br />
         
         
-        <!-- This is the form that I'd like to use to save the query string to the UserProfile data -->
+        <!-- 
         <form method="post" action="{% url 'topics' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="submit" name="submit" value="Save" />
         </form>
+        -->
+            <form id="saveQuery"  method="post">
+                {% csrf_token %}
+                <input type="submit" value="Save Query"  />
+            </form>
 
-<h2>{{ tempvar }}</h2>
+
+
+<h2 id="currentQuery">{{ tempvar }}</h2>
+
+    <script type="text/javascript">
+console.log('scripting');
+$(document).ready(function() {
+    //var myQuery = tempvar
+    $('#saveQuery').submit(function(e){
+        console.log('clicked');
+        //$.get( "/topics/", function( data ) {});
+        //needs to get the variable that's being saved - maybe grab this client side as well?
+        $.post('/topics/', $(myQuery).serialize(), function(data){
+            console.log('posting');
+            $('#currentQuery').html(data.topics);
+            console.log(data.topics);
+        });
+        
+    e.preventDefault();
+    });
+});
+</script>
 
 <div class="row">
     <div class="col-md-3 col-sm-3 blue">

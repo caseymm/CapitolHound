@@ -244,23 +244,20 @@ def topics(request):
     pageURL = request.get_full_path()
     urlData = urlparse(pageURL)
     theQuery = urlData.query.strip('=')
-    #key = theQuery
+    key = theQuery
     
     if request.method == 'POST':
         
-        context = RequestContext(request)
-        
-        pageURL = request.get_full_path()
-        urlData = urlparse(pageURL)
-        theQuery = urlData.query.strip('=')
-        #key = theQuery
         #will save 'key' to topics if it is a string I've made. Somehow not getting theQuery
  
         user = request.user
         
         profile = request.user.get_profile()
-
-        profile.topics = key
+        
+        print(request.POST['topics'])
+        topics = request.POST['topics']
+        
+        #profile.topics = pageURL
         profile.save()
 
     # The request is not a HTTP POST, so display the login form.
@@ -272,8 +269,6 @@ def topics(request):
     
     return render_to_response('searchExample/note.html', {}, context)
 
-
-    return render(request, "searchExample/note.html", context)
 
 ### EMAIL ###
 #NOT DOING ANYTHING RIGHT NOW
