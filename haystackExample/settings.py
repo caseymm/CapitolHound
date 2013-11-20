@@ -198,6 +198,8 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
+AUTH_PROFILE_MODULE = "searchExample.UserProfile"
+
 #EMAIL_BACKEND = 'django_sendmail_backend.backends.EmailBackend'
 #MANDRILL_API_KEY = 'FsE3h6f01EfqOueRFpWQKAl'
 #EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"

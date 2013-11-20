@@ -46,4 +46,10 @@
             {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}
     </form>
+    
+    <!--<form method="post" action="{% url 'topics' %}"
+                enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="submit" name="submit" value="Save" />
+        </form>-->
 {% endblock %}

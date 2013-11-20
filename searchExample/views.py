@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect, render_to_resp
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from searchExample.forms import NotesSearchForm, UserForm, UserProfileForm
 
@@ -243,23 +244,36 @@ def topics(request):
     pageURL = request.get_full_path()
     urlData = urlparse(pageURL)
     theQuery = urlData.query.strip('=')
+    #key = theQuery
     
     if request.method == 'POST':
         
-        #Can't get 'user' - don't know how to define, thought @login_required would take care of this.
-        profile = UserProfile.objects.get(user)
+        context = RequestContext(request)
         
-        # Would like to save the query string that we're getting on the page to the UserProfile - don't think CharField
-        # in models is correct, though
-        profile.topics = theQuery
-        profile.save() 
+        pageURL = request.get_full_path()
+        urlData = urlparse(pageURL)
+        theQuery = urlData.query.strip('=')
+        #key = theQuery
+        #will save 'key' to topics if it is a string I've made. Somehow not getting theQuery
+ 
+        user = request.user
+        
+        profile = request.user.get_profile()
+
+        profile.topics = key
+        profile.save()
 
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render_to_response('searchExample/note.html', {}, context)
+        return render_to_response('searchExample/email_success.html', {}, context)
+    
+    return render_to_response('searchExample/note.html', {}, context)
+
+
+    return render(request, "searchExample/note.html", context)
 
 ### EMAIL ###
 #NOT DOING ANYTHING RIGHT NOW

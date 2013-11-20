@@ -38,8 +38,15 @@ class UserProfile(models.Model):
     # The additional attributes we wish to include.
     # this is where I want the query strings to be saved
     topics = models.CharField(max_length=1000)
+    #use with foreign key to saved searches class
+    
+    
+
+#class SavedSearches
+    #searches...
 
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
         return self.user.username
+
     

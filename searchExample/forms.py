@@ -1,5 +1,3 @@
-### DOESN'T DO ANYTHING
-
 from haystack.forms import SearchForm
 from django.forms import ModelForm
 from models import UserProfile
