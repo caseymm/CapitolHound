@@ -34,6 +34,7 @@
         -->
             <form id="saveQuery"  method="post">
                 {% csrf_token %}
+                <input type="text" value="{{ tempvar }}" />
                 <input type="submit" value="Save Query"  />
             </form>
 
@@ -49,10 +50,10 @@ $(document).ready(function() {
         console.log('clicked');
         //$.get( "/topics/", function( data ) {});
         //needs to get the variable that's being saved - maybe grab this client side as well?
-        $.post('/topics/', $(myQuery).serialize(), function(data){
-            console.log('posting');
-            $('#currentQuery').html(data.topics);
-            console.log(data.topics);
+        $.post('/topics/', $(this).serialize(), function(data){
+            console.log(this);
+            //$('#currentQuery').html(data.topics);
+            //console.log(data.topics);
         });
         
     e.preventDefault();

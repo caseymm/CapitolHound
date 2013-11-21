@@ -254,10 +254,12 @@ def topics(request):
         
         profile = request.user.get_profile()
         
-        print(request.POST['topics'])
-        topics = request.POST['topics']
+        #saveQuery = UserProfile.topics(request.POST)
         
-        #profile.topics = pageURL
+        #print(request.POST['topics'])
+        #profile.topics = (request.POST['topics'])
+        
+        profile.topics = pageURL
         profile.save()
 
     # The request is not a HTTP POST, so display the login form.
