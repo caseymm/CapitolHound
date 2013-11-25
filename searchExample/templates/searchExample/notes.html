@@ -24,7 +24,7 @@
 
 <h3 style="text-decoration: underline;">Three latest notes</h3>
 {% for note in all_notes %}
-<h4>{{ note.title }}</h4>
+<a href="/search/{{ note.id }}">{{ note.title }}</a>
     <p class = "blue small">{{ note.timestamp }}</p>
 
 {% endfor %}

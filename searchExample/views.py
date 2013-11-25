@@ -22,7 +22,6 @@ def notes(request):
     form = NotesSearchForm(request.GET)
     notes = form.search()
     all_notes = Note.objects.all().order_by('-id')[:3]
-    #three_latest = Note.objects.all().order_by('-id')[:3]
     context = {
         'notes': notes,
         'all_notes': all_notes,
@@ -55,12 +54,11 @@ def note(request, pk):
 def archive(request):
     form = NotesSearchForm(request.GET)
     notes = form.search()
-    all_notes = Note.objects.all()
+    all_notes_rev = Note.objects.all().order_by('-id')
     context = {
         'notes': notes,
-        'all_notes': all_notes,
+        'all_notes_rev': all_notes_rev,
     }
-    #return render_to_response('notes.html', {'notes': notes})
     return render(request, "searchExample/archive.html", context)
 
 #def note_list(request, pk):

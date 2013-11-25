@@ -2,12 +2,12 @@
 
 {% block archive %}
 
-{% for note in all_notes %}
-
 <p class = "small">This currently lists all notes. Get all.</p>
 
+{% for note in all_notes_rev %}
+
 <!--<a href="{{ result.object.note.id }}?={{ query }}#{{ result.object.id }}">-->
-<a href="#">{{ note.title }}</a>
+<a href="/search/{{ note.id }}">{{ note.title }}</a>
     <p class="blue small">{{ note.timestamp }}</p>
 
 {% endfor %}
