@@ -20,6 +20,7 @@
             <h1>{% block title %} Haystack Search Example {% endblock %}</h1>
             
             <h4 class="blue">Search through the data</h4>
+            <a class="btn btn-success btn-sm" href="{% url 'archive' %}">Archive</a>
         </div>
         <div class="col-md-3 col-sm-3">
                 {% if user.is_authenticated %}
@@ -83,6 +84,9 @@
     {% endblock %}
     
     {% block login %}
+    {% endblock %}
+    
+    {% block archive %}
     {% endblock %}
 
     

@@ -32,11 +32,10 @@
             <input type="submit" name="submit" value="Save" />
         </form>
         -->
-            <form id="saveQuery"  method="post">
+            <form id="search_form" method="post" action="">
                 {% csrf_token %}
                 <input type="text" value="{{ tempvar }}" />
-                {{ profile_form.as_p }}
-                <input type="submit" value="Save Query" name="topics"  />
+                <input type="submit" value="Save Query" />
             </form>
 
 
@@ -47,7 +46,7 @@
 console.log('scripting');
 $(document).ready(function() {
     //var myQuery = tempvar
-    $('#saveQuery').submit(function(e){
+    $('#search_form').submit(function(e){
         console.log('clicked');
         //$.get( "/topics/", function( data ) {});
         //needs to get the variable that's being saved - maybe grab this client side as well?

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from searchExample.models import Note, NoteSegment, UserProfile
+from searchExample.models import Note, NoteSegment, UserProfile, SaveThisSearch
 
 #admin.site.register(Note)
 
@@ -14,3 +14,4 @@ class NoteSegmentAdmin(admin.ModelAdmin):
 admin.site.register(NoteSegment, NoteSegmentAdmin)
 
 admin.site.register(UserProfile)
+admin.site.register(SaveThisSearch)

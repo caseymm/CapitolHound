@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block archive %}
+
+{% for note in all_notes %}
+
+<p class = "small">This currently lists all notes. Get all.</p>
+
+<!--<a href="{{ result.object.note.id }}?={{ query }}#{{ result.object.id }}">-->
+<a href="#">{{ note.title }}</a>
+    <p class="blue small">{{ note.timestamp }}</p>
+
+{% endfor %}
+
+{% endblock %}
