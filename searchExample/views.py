@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from searchExample.forms import NotesSearchForm, UserForm, UserProfileForm
+from django.shortcuts import *
+
 
 #from searchExample.query import NotesQuery
 import urllib
@@ -253,14 +255,16 @@ def topics(request):
         user = request.user
         
         profile = request.user.get_profile()
-        
         #saveQuery = UserProfile.topics(request.POST)
-        
         #print(request.POST['topics'])
-        #profile.topics = (request.POST['topics'])
+        form = UserProfileForm(request.POST)
+
+        if(form.is_valid()):
         
-        profile.topics = pageURL
-        profile.save()
+            topics = request.POST['topics']
+            
+            #profile.topics = pageURL
+            profile.save()
 
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
