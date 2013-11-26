@@ -260,19 +260,37 @@ def topics(request):
         #will save 'key' to topics if it is a string I've made. Somehow not getting theQuery
  
         user = request.user
+        if user is not None:
+            # Is the account active? It could have been disabled.
+            if user.is_active:
         
-        profile = request.user.get_profile()
+                #profile = request.user.get_profile()
         
-        #search_form = SaveThisSearchForm(data=request.POST)
-        search_form = SaveThisSearchForm(request.POST)
-        saved_searches = 'something!'
+                #search_form = SaveThisSearchForm(data=request.POST)
+                search_form = SaveThisSearchForm(request.POST)
+                #saved_searches = 'something!'
 
-        if(search_form.is_valid()):
-        
-            saved_searches = request.POST['topics']
-            #search = form.save()
-            #search.save()
-            #saved_searches = form.cleaned_data['topics']
+                if(search_form.is_valid()):
+                
+                    ### Doesn't seem to be executing this, but it isn't returning the 'else' HttpResponse ###
+                    saved_searches = request.POST['saved_searches']
+                    search = search_form.save()
+                    search.save()
+                    SaveThisSearch.save()
+                    #saved_searches = form.cleaned_data['topics']
+                    return HttpResponse(json.dumps({'saved_searches': saved_searches}))
+                
+                else:
+
+                    return HttpResponse("This form is broken.")
+                
+            else:
+                # An inactive account was used - no logging in!
+                return HttpResponse("Your account is disabled.")
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("Invalid login details supplied.")
 
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.

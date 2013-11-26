@@ -38,7 +38,7 @@
                 <input type="submit" value="Save Query" />
             </form>
 
-
+<div class="temp"></div>
 
 <h2 id="currentQuery">{{ tempvar }}</h2>
 
@@ -52,7 +52,7 @@ $(document).ready(function() {
         //needs to get the variable that's being saved - maybe grab this client side as well?
         $.post('/topics/', $(this).serialize(), function(data){
             console.log("{{tempvar}}");
-            //$('#currentQuery').html(data.topics);
+            $('.temp').html("{{tempvar}}");
             //console.log(data.topics);
         });
         
