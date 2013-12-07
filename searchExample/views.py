@@ -1,4 +1,5 @@
 # Create your views here.
+import json
 
 from searchExample.models import Note, NoteSegment, UserProfile, SaveThisSearch
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
@@ -274,14 +275,15 @@ def topics(request):
                 
                     ### Doesn't seem to be executing this, but it isn't returning the 'else' HttpResponse ###
                     saved_searches = request.POST['saved_searches']
-                    search = search_form.save()
+                    search = search_form.save(commit=False)
+                    search.user = request.user
                     search.save()
-                    SaveThisSearch.save()
+                    #SaveThisSearch.save()
                     #saved_searches = form.cleaned_data['topics']
                     return HttpResponse(json.dumps({'saved_searches': saved_searches}))
                 
                 else:
-
+                    print search_form.errors
                     return HttpResponse("This form is broken.")
                 
             else:

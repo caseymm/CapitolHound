@@ -34,7 +34,7 @@
         -->
             <form id="search_form" method="post" action="">
                 {% csrf_token %}
-                <input type="text" value="{{ tempvar }}" />
+                <input type="text" value="{{ tempvar }}" name="saved_searches"/>
                 <input type="submit" value="Save Query" />
             </form>
 
@@ -48,6 +48,7 @@ $(document).ready(function() {
     //var myQuery = tempvar
     $('#search_form').submit(function(e){
         console.log('clicked');
+        console.log($(this).serialize())
         //$.get( "/topics/", function( data ) {});
         //needs to get the variable that's being saved - maybe grab this client side as well?
         $.post('/topics/', $(this).serialize(), function(data){

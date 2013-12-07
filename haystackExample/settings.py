@@ -147,7 +147,7 @@ INSTALLED_APPS = (
     
     # Added.
     'haystack',
-    'courier',
+    #'courier',
     'djcelery',
     'celerytest',
     'djrill',
