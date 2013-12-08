@@ -53,6 +53,7 @@ def note(request, pk):
     return render(request, "searchExample/note.html", context)
 
 def archive(request):
+    ####### important for the email searching #######
     form = NotesSearchForm(request.GET)
     notes = form.search()
     all_notes_rev = Note.objects.all().order_by('-id')
