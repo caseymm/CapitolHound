@@ -24,7 +24,8 @@ class Command(NoArgsCommand):
             self.stdout.write("got users")
             subject = 'Today\'s Alerts'
             from_email="Capitol Hound Support <support@capitolhound.com>"
-            terms = SaveThisSearch.objects.all()
+            #terms = SaveThisSearch.objects.all()
+            terms = SaveThisSearch.objects.all().filter(user=user).values('saved_searches')
             #text = 'Hi %s, here are your alerts: %s.' % (user.username, alerts)
             text = 'Hi %s, here are your alerts: %s.' % (user.username, terms)
                 
