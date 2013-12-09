@@ -2,8 +2,8 @@
 from django.core.management.base import NoArgsCommand, CommandError
 from django.contrib.auth.models import User
 from django.shortcuts import render
-from searchExample.models import Note, NoteSegment, UserProfile, SaveThisSearch
-from django.core.mail import EmailMessage
+from searchExample.models import Note, NoteSegment, UserProfile, SaveThisSearch, EmailLogs
+from django.core.mail import EmailMultiAlternatives
 from django.db import connection
 #from django.template.loader import get_template
 #from django.template import Context
@@ -28,11 +28,18 @@ class Command(NoArgsCommand):
             
             subject = 'Today\'s Alerts'
             from_email="Capitol Hound Alerts <alerts@capitolhound.com>"
-            terms = SaveThisSearch.objects.all().filter(user=user).values_list('saved_searches', flat=True)
-            text = 'Hi %s, here are your alerts: %s.' % (user.username, ', '.join(terms))
-            
+            terms = EmailLogs.objects.all().filter(user=user).values_list('saved_alert_term', flat=True)
+            links = EmailLogs.objects.all().filter(user=user).values_list('saved_alert_link', flat=True)
+            text_content = 'Hi %s, here are your alerts for today: %s.' % (user.username, ', '.join(links))
+            html_content = 'Hi %s, here are your alerts for today:<br /><b> %s </b><br />' % (user.username, ', '.join(links))
+            #t = loader.get_template('registration/email.txt')
+            #c = Context({
+            #'saved_alert_term': 'saved_alert_term',
+            #'saved_alert_link': 'saved_alert_link',
+            #})
             self.stdout.write("gets here")
-            msg = EmailMessage(subject, text, from_email, [user.email])
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [user.email])
+            msg.attach_alternative(html_content, "text/html")
             msg.send()
                                     
         self.stdout.write("sending complete")

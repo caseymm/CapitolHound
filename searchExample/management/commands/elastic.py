@@ -1,7 +1,7 @@
 from django.core.management.base import NoArgsCommand, CommandError
 from haystack.query import SearchQuerySet
 from django.db import connection
-from searchExample.models import Note, NoteSegment, UserProfile, SaveThisSearch
+from searchExample.models import Note, NoteSegment, UserProfile, SaveThisSearch, EmailLogs
 import datetime
 
 # your custom command must reference the base management classes like this:

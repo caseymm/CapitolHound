@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
+
+now = datetime.datetime.now()
+today = now.strftime("%Y-%m-%d 00:00")
 
 
 class Note(models.Model):
@@ -47,6 +51,17 @@ class SaveThisSearch(models.Model):
     
     def __unicode__(self):
         return self.user.username+'\'s searches'
+    
+class EmailLogs(models.Model):
+    user = models.ForeignKey(User)
+    saved_alert_term = models.TextField()
+    saved_alert_link = models.TextField()
+    timestamp = models.DateTimeField(auto_now=True)
+    
+    
+    def __unicode__(self):
+        return self.user.username+'\'s email logs'+today
+        return self.timestamp
     
 
 
