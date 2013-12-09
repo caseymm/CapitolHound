@@ -1,0 +1,1 @@
+Hi {{user.username}}, here are your alerts: {{.join(terms)}}. 
