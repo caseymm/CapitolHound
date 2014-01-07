@@ -2,7 +2,7 @@
     '{{repeat(100)}}',
     {
         pk: '{{index}}',
-        model: 'searchExample.Note',
+        model: 'capitolHoundApp.Note',
         fields: 
             {
                 title: '{{company}}',
