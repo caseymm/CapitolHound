@@ -2,10 +2,12 @@
 from django.core.management.base import BaseCommand, CommandError
 from bs4 import BeautifulSoup
 from capitolHoundApp.models import Note, NoteSegment, UserProfile, SaveThisSearch
+import string
 
 class Command(BaseCommand):
     args = '<transcript>'
     help = 'Parses and imports latest transcript'
+    
     
     def handle(self, *args, **options):
         for transcript in args:
@@ -26,7 +28,7 @@ class Command(BaseCommand):
                 #Use this code when file is local:
                 
                 with open ("transcript.html", "r") as tempFile:
-                    #html=tempFile.read().replace('<p>[SPEAKER CHANGE]', '<p class="speaker_change">').replace(",", "")
+                    #html=tempFile.read().replace(['<p>[SPEAKER CHANGE]', '<p class="speaker_change">'], [",", " "])
                     html=tempFile.read().replace('<p>[SPEAKER CHANGE]', '<p class="speaker_change">')
 
                 
@@ -48,14 +50,16 @@ class Command(BaseCommand):
                 print Note.objects.latest('id')
                 this_note = Note.objects.latest('id')
                 
+                
                 for sections in transcript:
                     section_time = sections.h3;
-                    section_text = sections.find_all('p');
+                    section_text1 = str(sections.find_all('p')).replace('</p>, <p','</p> <p');
+                    #section_text2 = str(section_text1)
                     
                     #print ("Section Time: %d", section_time);
                     #print ("Section Text: %d", section_text);
                     
-                    each_section = NoteSegment.objects.create(note = this_note,title = "title", audio = "audio", timestamp = section_time, body = section_text)
+                    each_section = NoteSegment.objects.create(note = this_note, title = "title", audio = "audio", timestamp = section_time, body = section_text1)
                     #each_section_text = NoteSection.objects.create(body = section_text)
                     
                     #each_section_text.save()
