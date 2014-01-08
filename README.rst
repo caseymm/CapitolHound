@@ -40,7 +40,7 @@ Scripts
 
 scraper.py, email_logs.py, and email.py are three scripts used to import transcripts, log saved searches, and send out daily alert emails.
 
-*scraper.py*
+**scraper.py**
 
 To run (from main capitolHound project folder where manage.py is):
 
@@ -49,7 +49,7 @@ To run (from main capitolHound project folder where manage.py is):
 scraper.py is set up to scrape an html file specifically named transcript.html located in the main project folder
 (same place as manage.py)
 
-*email_logs.py*
+**email_logs.py**
 
 To run:
 
@@ -57,7 +57,7 @@ To run:
 
 This will gather all of the terms that each user has saved to generate a list of alerts to send them
 
-*email.py*
+**email.py**
 
 To run:
 
