@@ -18,10 +18,12 @@ Installing haystack and elasticsearch
 -------------------------------------
 
 This project is currently running on:
+
 * django-haystack v2
 * elasticsearch 0.90.1
 
 Requirements for haystack:
+
 * pip install django-haystack==2.0.0
 * pip install pyelasticsearch==0.5 
 
@@ -30,6 +32,7 @@ Requirements for elasticsearch:
 * brew install elasticsearch
 
 Elasticsearch can be launched using:
+
 * elasticsearch -f -D es.config=/usr/local/Cellar/elasticsearch/0.90.2/config/elasticsearch.yml 
 
 Credits
