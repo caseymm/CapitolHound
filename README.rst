@@ -1,52 +1,39 @@
-django-courier
+Capitol Hound
 ==============
 
-Dead simple email notification system
+Capitol Hound is a `Reese News Lab <http://reesenewslab.org/>`_ project that will enable users to search through a database of transcripts, text and audio, from
+the North Carolina General Assembly. The idea for the project originated in the summer of 2013 as a startup idea and developed by a
+team of three journalism students in the fall of 2013.
 
+About
+-----
 
-Introduction
-------------
+Capitol Hound is built using the django framework. The search funtionality is provided by `django-haystack <https://github.com/toastdriven/django-haystack>`_,
+wich runs off of a java based search engine, `elasticsearch <http://www.elasticsearch.org/>`_.
 
-Allows easy configuration of notifications and management of email templates.
+The `live development site <http://capitolhound.com>`_ allows users to search through example transcripts, register for
+an account, log in and out, and subscribe to daily alerts.
 
-* `Screenshots Screenshots <http://code.google.com/p/django-courier/wiki/Screenshots>`_
+Installing haystack and elasticsearch
+-------------------------------------
 
+This project is currently running on:
+* django-haystack v2
+* elasticsearch 0.90.1
 
-Project goals
--------------
+Requirements for haystack:
+* pip install django-haystack==2.0.0
+* pip install pyelasticsearch==0.5 
 
-* Allow administrators to setup email notifications on any models without programming knowledge
-* Allow administrators to create and modify email templates easily
-* Be as simple and unobtrusive as possible to setup
+Requirements for elasticsearch:
 
+* brew install elasticsearch
 
-Similar projects
-----------------
-
-If this project does not fit your needs, you might want to look at `django-notification <https://github.com/jtauber/django-notification/>`_.
-
-Key differences between django-courier and django-notification:
-
-* No need to setup notifications from Python
-* Email templates are stored in database
-* Email templates are rendered using Django template system (with the sender object as context)
-* Everything is manageable from the admin interface
-* Transparent integration with `django-modeltranslation <http://code.google.com/p/django-modeltranslation/>`_
-
-
-Known issues
-------------
-
-* If you set an EmailNotification on the User model on create and modified signal, you will get a created AND a modified notification upon User creation. This is related to the way the User model are created (I guess).
-* Compatible with only with Django >= 1.3
-
+Elasticsearch can be launched using:
+* elasticsearch -f -D es.config=/usr/local/Cellar/elasticsearch/0.90.2/config/elasticsearch.yml 
 
 Credits
 =======
 
-This project was created and is sponsored by:
-
-.. figure:: http://motion-m.ca/media/img/logo.png
-    :figwidth: image
-
-Motion Média (http://motion-m.ca)
+This project belongs to `Reese News Lab <http://reesenewslab.org/>`_ and the `School of Journalism and Mass Communication at The University of
+North Carolina at Chapel Hill <http://jomc.unc.edu/>`_.
