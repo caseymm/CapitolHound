@@ -33,7 +33,27 @@ Requirements for elasticsearch:
 
 Elasticsearch can be launched using:
 
-* elasticsearch -f -D es.config=/usr/local/Cellar/elasticsearch/0.90.2/config/elasticsearch.yml 
+* elasticsearch -f -D es.config=/usr/local/Cellar/elasticsearch/0.90.2/config/elasticsearch.yml
+
+Scripts
+-------
+
+scraper.py, email_logs.py, and email.py are three scripts used to import transcripts, log saved searches, and send out daily alert emails.
+
+scraper.py
+----------
+
+To run (from main capitolHound project folder where manage.py is):
+
+* python manage.py scraper transcript.html
+
+scraper.py is set up to scrape an html file specifically named transcript.html located in the main project folder
+(same place as manage.py)
+
+email_logs.py
+-------------
+
+
 
 Credits
 =======

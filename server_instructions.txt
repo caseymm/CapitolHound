@@ -1,0 +1,29 @@
+IMPORTING TRANSCRIPTS
+
+After ssh into server
+
+run:
+
+cd webapps/capitol_hound python2.7 manage.py scraper transcript.html
+
+# Each transcript should be named transcript.html since the python scraping script is looking for a file called transcript.html
+# You do need to specify python2.7 when running the command, webfaction requires the version
+------------------------
+
+ELASTICSEARCH
+
+If you need to restart elasticsearch:
+
+cd elasticsearch
+cd bin/elasticsearch -f
+
+# Can also run in bg if needed
+
+------------------------
+
+MAIL/ALERTS
+
+# Two scripts are running on cron right now. One script gathers saved user keywords (currently at 3:58 pm), and the other
+sends an email alert to the user (currently at 4:00 pm)
+# The time of the automated scripts can be changed with crontab -e
+# The server is run on GMT, which is five hours ahead of EST
