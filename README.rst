@@ -35,6 +35,12 @@ Elasticsearch can be launched using:
 
 * elasticsearch -f -D es.config=/usr/local/Cellar/elasticsearch/0.90.2/config/elasticsearch.yml
 
+If you need to wipe the db and set it up again:
+
+From within capitolHound run:
+
+* python manage.py sqlclear capitolHoundApp | python manage.py dbshell
+
 Scripts
 -------
 
