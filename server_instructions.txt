@@ -27,3 +27,11 @@ MAIL/ALERTS
 sends an email alert to the user (currently at 4:00 pm)
 # The time of the automated scripts can be changed with crontab -e
 # The server is run on GMT, which is five hours ahead of EST
+
+_________________________
+
+#Shouldn’t need to do this, but:
+
+If you need to clear the db and set it up again on the server:
+
+cd webapps/capitol_hound python2.7 manage.py sqlclear searchExample | python2.7 manage.py dbshell
