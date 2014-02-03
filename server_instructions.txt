@@ -14,10 +14,10 @@ ELASTICSEARCH
 
 If you need to restart elasticsearch:
 
-cd elasticsearch
-cd bin/elasticsearch -f
+cd elasticsearch-0.90.1
+cd bin/elasticsearch bg
 
-# Can also run in bg if needed
+# Had to take off memory limit in .yml b/c started throwing error. Will check back if runs out of memory.
 
 ------------------------
 
