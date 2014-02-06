@@ -17,8 +17,6 @@ If you need to restart elasticsearch:
 cd elasticsearch-0.90.1
 cd bin/elasticsearch bg
 
-# Had to take off memory limit in .yml b/c started throwing error. Will check back if runs out of memory.
-
 ------------------------
 
 MAIL/ALERTS
@@ -27,6 +25,16 @@ MAIL/ALERTS
 sends an email alert to the user (currently at 4:00 pm)
 # The time of the automated scripts can be changed with crontab -e
 # The server is run on GMT, which is five hours ahead of EST
+
+_________________________
+
+If you change of the Django config files (e.g. urls.py, views.py, etc.), you will need to restart Apache
+This is according to webfaction documentation
+
+Restarting Apache
+
+Change to Apache’s bin directory. Enter cd /home/username/webapps/capitol_hound/apache2/bin and press Enter.
+Enter ./restart and press Enter.
 
 _________________________
 
